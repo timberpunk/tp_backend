@@ -1,0 +1,22 @@
+[Unit]
+Description=TimberPunk FastAPI Application
+After=network.target postgresql.service
+Requires=postgresql.service
+
+[Service]
+Type=notify
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/timberpunk/tp_backend
+Environment="PATH=/var/www/timberpunk/tp_backend/venv/bin"
+EnvironmentFile=/var/www/timberpunk/tp_backend/.env
+ExecStart=/var/www/timberpunk/tp_backend/venv/bin/gunicorn -c gunicorn.conf.py main:app
+Restart=always
+RestartSec=10
+
+# Security
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

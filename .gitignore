@@ -1,4 +1,6 @@
 .env
+.env.production
+.env.docker
 __pycache__/
 *.pyc
 *.pyo
@@ -11,3 +13,6 @@ dist/
 build/
 .venv/
 venv/
+*.db
+*.sqlite
+*.sqlite3
